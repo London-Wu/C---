@@ -362,7 +362,7 @@ void add_more()
 {
 	char input_name[20];
 	char input_id[20];
-	char year[5];
+	char year[5];                                                                                                                                    //id:3053 
 	int input_score;
 	char iscontinue;
 	
