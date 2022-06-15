@@ -34,6 +34,7 @@ void prime();
 void coprime();
 char *encrypt(int key);
 char *decrypt(int key, char *str);
+void output_sit();
 
 int GetGPA(int score);
 void getRank(int score);
@@ -43,6 +44,7 @@ int turnToInt(char *chars);
 void show_stu_detail(int point);
 int isprime(int num);
 int isconprime(int num1,int num2);
+
 
 void add_one();
 void add_more();
@@ -549,6 +551,49 @@ void coprime()
 	system("pause");
 }
 
+void output_sit()
+{
+	int sit[8]={0};
+	for(int i=0;i<student_num;i++)
+	{
+		sit[students[i].GPA]++;
+	}
+	printf("A+:%d\n",sit[0]);
+	printf("A:%d\n",sit[1]);
+	printf("B+:%d\n",sit[2]);
+	printf("B:%d\n",sit[3]);
+	printf("C+:%d\n",sit[4]);
+	printf("C:%d\n",sit[5]);
+	printf("D:%d\n",sit[6]);
+	printf("F:%d\n",sit[7]);
+	system("pause");
+}
+
+
+char *encrypt(int key)
+{
+	reIDrank();
+	char charnum[4];
+	char charnums[301];
+	for(int i=0;i<student_num;i++)
+	{
+		sprintf(charnum,"%d",students[i].score);
+		strcat(charnums,charnum);
+	}
+	
+	for(int i=0;i<strlen(charnums);i++)
+	{
+		charnums[i]+=key%10;
+		if(charnums[i]>'9') charnums[i]-=10;
+	}
+	
+	char *charnumsadd = charnums;
+	printf("Result:");
+	puts(charnums);
+	system("pause");
+	return charnumsadd;
+}
+
 int show_main_menu()
 {
 	int choose;
@@ -566,8 +611,8 @@ int show_main_menu()
 	printf("9 average score\n");
 	printf("10 prime judge\n");
 	printf("11 coprime judge\n");
-	printf("12 encrypt\n");
-	printf("13 decrypt\n");
+	printf("12 show GPA detail\n");
+	printf("13 encrypt\n");
 	printf("0 Exit\n");
 	printf("Input a number here:");
 	scanf("%d",&choose);
@@ -635,12 +680,14 @@ int main()
 			coprime();
 			break;
 		case 12:
-			printf("Coming Soon!\n");
-			system("pause");
+			output_sit();
 			break;
 		case 13:
-			printf("Coming Soon!\n");
-			system("pause");
+			int key;
+			printf("Please input the key:");
+			scanf("%d",&key);
+			getchar();
+			encrypt(key);
 			break;
 		}
 	
